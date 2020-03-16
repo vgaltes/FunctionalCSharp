@@ -16,38 +16,16 @@ namespace FunctionalCSharp.Tests
 
         public static double CalculatePriceMultiplier(Region region, ClientType clientType, SeasonType seasonType)
         {
-            var multiplier = 1.0;
-
-            if (seasonType == SeasonType.Peak)
-            {
-                if (clientType == ClientType.Common)
+            return (region, clientType, seasonType) switch
                 {
-                    switch (region)
-                    {
-                        case Region.Europe:
-                        case Region.USA:
-                            multiplier = 1.5;
-                            break;
-                        case Region.Asia:
-                        case Region.Other:
-                            multiplier = 2.0;
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException(nameof(region), region, "Wrong region");
-                    }
-                }
-                else
-                {
-                    multiplier = 1.25;
-                }
-            }
-            else
-            {
-                if (clientType == ClientType.Common) multiplier = 1.25;
-                if (clientType == ClientType.Premium) multiplier = 1.0;
-            }
-
-            return multiplier;
+                    (_, ClientType.Common, SeasonType.Low) => 1.25,
+                    (_, ClientType.Premium, SeasonType.Low) => 1.0,
+                    (Region.Europe, ClientType.Common, SeasonType.Peak) => 1.5,
+                    (Region.Asia, ClientType.Common, SeasonType.Peak) => 2.0,
+                    (Region.USA, ClientType.Common, SeasonType.Peak) => 1.5,
+                    (Region.Other, ClientType.Common, SeasonType.Peak) => 2.0,
+                    (_, ClientType.Premium, SeasonType.Peak) => 1.25
+                };
         }
     }
 
