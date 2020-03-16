@@ -1,40 +1,29 @@
-﻿namespace FunctionalCSharp.Tests
-{
-    public struct Point
-    {
-        private double x;
+﻿using System;
 
+namespace FunctionalCSharp.Tests
+{
+    public readonly struct Point
+    {
         public double X
         {
-            get => x;
-            set => x = value;
+            get;
         }
-
-        private double y;
 
         public double Y
         {
-            get => y;
-            set => y = value;
+            get;
         }
-
-        private double? distance;
 
         public double Distance
         {
-            get => distance.GetValueOrDefault();
-            set => distance = value;
+            get;
         }
 
-        Point(double x, double y) => (this.x, this.y, distance) = (x, y, default);
+        Point(double x, double y) => (X, Y, Distance) = (x, y, Math.Sqrt(x*x + y*y));
 
         public static bool operator ==(Point left, Point right) => (left.X, left.Y) == (right.X, right.Y);
 
         public static bool operator !=(Point left, Point right) => (left.X, left.Y) != (right.X, right.Y);
-
-        public void SwapCoords() => (X, Y) = (Y, X);
-
-        // First it evaluates the expressions in the right hand side, then the expressions in the left hand side and then it makes the assignments
 
 
         public override bool Equals(object? obj)
