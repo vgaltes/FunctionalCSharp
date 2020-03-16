@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FunctionalCSharp.Tests
+﻿namespace FunctionalCSharp.Tests
 {
     public struct Point
     {
@@ -21,6 +19,12 @@ namespace FunctionalCSharp.Tests
         }
 
         private double? distance;
+
+        public double Distance
+        {
+            get => distance.GetValueOrDefault();
+            set => distance = value;
+        }
 
         Point(double x, double y)
         {

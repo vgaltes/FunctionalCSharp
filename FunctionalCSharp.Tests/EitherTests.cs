@@ -1,5 +1,4 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using LanguageExt;
 using LanguageExt.ClassInstances;
 using Xunit;
@@ -74,25 +73,12 @@ namespace FunctionalCSharp.Tests
 
         private decimal CalculateAbsoluteDiscount(ProductPrice price, AbsoluteDiscount absoluteDiscount)
         {
-            decimal totalDiscount;
-
-            switch (absoluteDiscount.Periodicity)
-            {
-                case Periodicity.Monthly:
-                    totalDiscount = absoluteDiscount.Value * 12;
-                    break;
-                case Periodicity.Quarter:
-                    totalDiscount = absoluteDiscount.Value * 4;
-                    break;
-                case Periodicity.Biannual:
-                    totalDiscount = absoluteDiscount.Value * 2;
-                    break;
-                case Periodicity.Annual:
-                    totalDiscount = absoluteDiscount.Value * 1;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            var totalDiscount =  absoluteDiscount.Periodicity switch {
+                Periodicity.Monthly => absoluteDiscount.Value * 12,
+                Periodicity.Quarter => absoluteDiscount.Value * 4,
+                Periodicity.Biannual => absoluteDiscount.Value * 2,
+                Periodicity.Annual => absoluteDiscount.Value
+            };
 
             return price.Value - totalDiscount;
         }

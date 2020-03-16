@@ -71,33 +71,3 @@ namespace FunctionalCSharp.Tests
         Low
     }
 }
-
-
-
-/*
- * public static double CalculatePriceMultiplier(Region region, ClientType clientType, SeasonType seasonType)
-        {
-            return (region, clientType, seasonType) switch
-                {
-                    (Region.Europe, ClientType.Common, SeasonType.Low) => 1.25,
-                    (Region.Asia, ClientType.Common, SeasonType.Low) => 1.25,
-                    (Region.USA, ClientType.Common, SeasonType.Low) => 1.25,
-                    (Region.Other, ClientType.Common, SeasonType.Low) => 1.25,
-                    (Region.Europe, ClientType.Premium, SeasonType.Low) => 1.0,
-                    (Region.Asia, ClientType.Premium, SeasonType.Low) => 1.0,
-                    (Region.USA, ClientType.Premium, SeasonType.Low) => 1.0,
-                    (Region.Other, ClientType.Premium, SeasonType.Low) => 1.0,
-                    (Region.Europe, ClientType.Common, SeasonType.Peak) => 1.5,
-                    (Region.Asia, ClientType.Common, SeasonType.Peak) => 2.0,
-                    (Region.USA, ClientType.Common, SeasonType.Peak) => 1.5,
-                    (Region.Other, ClientType.Common, SeasonType.Peak) => 2.0,
-                    (Region.Europe, ClientType.Premium, SeasonType.Peak) => 1.25,
-                    (Region.Asia, ClientType.Premium, SeasonType.Peak) => 1.25,
-                    (Region.USA, ClientType.Premium, SeasonType.Peak) => 1.25,
-                    (Region.Other, ClientType.Premium, SeasonType.Peak) => 1.25
-                };
-
-        }
- * 
- * 
- */
