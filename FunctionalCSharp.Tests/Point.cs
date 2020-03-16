@@ -26,52 +26,25 @@
             set => distance = value;
         }
 
-        Point(double x, double y)
-        {
-            this.x = x;
-            this.y = y;
-            distance = default;
-        }
+        Point(double x, double y) => (this.x, this.y, distance) = (x, y, default);
 
-        public static bool operator ==(Point left, Point right)
-        {
-            return left.X == right.X && left.Y == right.Y;
-        }
+        public static bool operator ==(Point left, Point right) => (left.X, left.Y) == (right.X, right.Y);
 
-        public static bool operator !=(Point left, Point right)
-        {
-            return left.X != right.X || left.Y != right.Y;
-        }
+        public static bool operator !=(Point left, Point right) => (left.X, left.Y) != (right.X, right.Y);
 
-        public void SwapCoords()
-        {
-            var tmp = X;
-            X = Y;
-            Y = tmp;
-        }
+        public void SwapCoords() => (X, Y) = (Y, X);
 
-        // First it evaluates the expressions in the right hand size, then the expressions in the left hand side and then it makes the assignments
+        // First it evaluates the expressions in the right hand side, then the expressions in the left hand side and then it makes the assignments
 
 
         public override bool Equals(object? obj)
         {
-            if (obj is Point)
-            {
-                var other = (Point)obj;
-                return this == other;
-            }
-            else
-            {
-                return false;
-            }
+            return obj is Point other ? this == other : false;
         }
-
 
         public override int GetHashCode()
         {
             return X.GetHashCode() ^ Y.GetHashCode();
         }
-
-        
     }
 }
