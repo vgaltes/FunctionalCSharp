@@ -15,13 +15,9 @@ namespace FunctionalCSharp.Tests
 
         public Person MarryInTheOldFashionedWayTo(Person man)
         {
-            if (man != null)
-            {
-                return new Person(this.FirstName,man.LastName);
-            }
-
-            Console.WriteLine(man.FirstName);
-            throw new ArgumentNullException(nameof(man), "Can't marry a null man");
+            _ = man ?? throw new ArgumentNullException(nameof(man), "Can't marry a null man");
+                
+            return new Person(this.FirstName,man.LastName);
         }
     }
 }
